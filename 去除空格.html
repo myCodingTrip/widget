@@ -1,0 +1,24 @@
+<!-- 创建一个表单，包含一个文本框和一个按钮 -->
+<form>
+  <label>请输入一个字符串：</label><br>
+  <input type="text" id="input-string"><br>
+  <button type="button" onclick="removeSpaces()">去除空格</button>
+</form>
+
+<!-- 在页面下方显示处理后的字符串 -->
+<p>处理后的字符串：<span id="output-string"></span></p>
+
+<!-- 在JavaScript代码中定义removeSpaces()函数，用来去除字符串中的空格 -->
+<script>
+  function removeSpaces() {
+    // 获取文本框中的字符串
+    var inputString = document.getElementById('input-string').value;
+
+    // 使用正则表达式替换字符串中的所有空格
+    var outputString = inputString.replace(/\s/g, '');
+
+    // 将处理后的字符串显示在页面上
+    document.getElementById('output-string').innerHTML = outputString;
+	navigator.clipboard.writeText(outputString);
+  }
+</script>

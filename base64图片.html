@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>展示 Base64 图片</title>
+</head>
+<body>
+  <h1>展示 Base64 图片</h1>
+  <textarea id="textInput" rows="20" cols="100"></textarea>
+  <br><br>
+  <button onclick="displayImage()">显示图片</button>
+  
+  <div id="imageContainer"></div>
+  
+  <script>
+    function displayImage() {
+	var textarea = document.getElementById('textInput');
+	  imageContainer.innerHTML = '<img src="data:image/gif;base64,' + textarea.value + '" alt="Base64 图片">';
+    }
+  </script>
+</body>
+</html>

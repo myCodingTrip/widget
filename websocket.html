@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>WebSocket Demo</title>
+</head>
+<body>
+	<h1>WebSocket Demo</h1>
+	<label for="address">WebSocket地址：</label>
+	<input type="text" id="address" style="width:300px">
+	<button onclick="connect()">连接</button>
+	<br><br>
+	<label for="message">发送消息：</label>
+	<input type="text" id="message">
+	<button onclick="sendMessage()">发送</button>
+	<br><br>
+	<div id="output"></div>
+	
+	<script type="text/javascript">
+		// 创建WebSocket连接
+		var socket;
+
+		function connect() {
+			var address = document.getElementById("address").value;
+			socket = new WebSocket(address);
+
+			// 连接打开事件
+			socket.onopen = function(event) {
+				console.log("WebSocket连接已打开");
+				document.getElementById("output").innerHTML += "WebSocket连接已打开" + "<br>";
+			};
+
+			// 收到消息事件
+			socket.onmessage = function(event) {
+				console.log("收到消息: " + event.data);
+				document.getElementById("output").innerHTML += event.data + "<br>";
+			};
+
+			// 连接关闭事件
+			socket.onclose = function(event) {
+				console.log("WebSocket连接已关闭");
+				document.getElementById("output").innerHTML += "WebSocket连接已关闭" + "<br>";
+			};
+		}
+
+		// 发送消息
+		function sendMessage() {
+			var message = document.getElementById("message").value;
+			socket.send(message);
+			console.log("发送消息: " + message);
+		}
+	</script>
+</body>
+</html>

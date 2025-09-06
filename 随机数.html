@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>随机数生成</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    input[type="number"] {
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <label for="min">Minimum:</label>
+  <input type="number" id="min" value="1">
+  <label for="max">Maximum:</label>
+  <input type="number" id="max" value="1000000">
+  <button onclick="generate()">Generate</button>
+  <p>Result: <span id="result"></span></p>
+  <script>
+    function generate() {
+      // Get the input values
+      var min = document.getElementById('min').value;
+      var max = document.getElementById('max').value;
+      
+      // Generate a random number between the minimum and maximum values
+      var result = Math.floor(Math.random() * (max - min + 1)) + min*1;
+      
+      // Display the result
+      document.getElementById('result').innerHTML += ' '+result;
+    }
+  </script>
+</body>
+</html>

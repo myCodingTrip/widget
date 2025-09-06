@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Countdown Timer</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f8efe8;
+		}
+		input[type="number"] {
+			padding: 5px 10px;
+			font-size: 16px;
+		}
+		button {
+			padding: 5px 10px;
+			font-size: 16px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="container" style="text-align:center">
+	<h1>Countdown Timer</h1>
+	<p>Enter the number of seconds for the countdown, and click the "Start" button to start the timer.</p>
+	<label for="seconds">Seconds:</label>
+	<input type="number" id="seconds" value="300">
+	<button onclick="start()">Start</button>
+	<button onclick="pause()">Pause</button>
+	<p>Time remaining: <h1 id="timer"></h1></p>
+	<audio id="bgMusic">
+		<source = src="E:/音乐/0song/音乐/Alan Silvestri - Forrest Gump - Suite.mp3" type="audio/mp3">
+	</audio>
+	</div>
+	<script>
+		var interval;
+	var isPause = false;
+		function start() {
+			// Get the input value
+			var seconds = document.getElementById('seconds').value;
+			start0(seconds);
+		}
+	
+	function pause() {
+		if(isPause){
+			var seconds = document.getElementById('timer').innerHTML;
+			start0(seconds);
+		}else{
+			clearInterval(interval);
+		}
+		isPause = !isPause;
+	}
+	
+	function start0(seconds){
+			// Set the timer
+			var timer = document.getElementById('timer');
+			interval = setInterval(function() {
+				seconds--;
+				timer.innerHTML = seconds;
+				if (seconds <= 0) {
+					clearInterval(interval);
+			var audio = document.getElementById("bgMusic");
+			//播放(继续播放)
+			audio.play();
+				}
+			}, 1000);
+	}
+	</script>
+</body>
+</html>

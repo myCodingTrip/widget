@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>生成SQL</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+        font-family: Arial, sans-serif;
+    }
+
+    form {
+        display: flex;
+        margin: 20px;
+    }
+
+    label {
+        display: block;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    input {
+        flex-grow: 1;
+        padding: 5px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+        padding: 5px 10px;
+        font-size: 18px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #output {
+        margin: 20px;
+        padding: 20px;
+        font-size: 18px;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<body>
+<form>
+    <label for="input">输入：</label>
+    <input type="text" id="input" name="input">
+    <button type="submit">提交</button>
+</form>
+<div id="output"></div>
+<script src="script.js"></script>
+</body>
+<script>
+    const form = document.querySelector('form');
+    const input = document.querySelector('#input');
+    const output = document.querySelector('#output');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+		const table = input.value;
+        const out = `select ${table}.id, <br>
+		${table}.name <br>
+		from ${table} <br>
+		where ${table}.delete_time=0 <br>
+		and ${table}.enterprise_id = #{enterpriseId}`;
+        output.innerHTML = `输出：${out}`;
+    });
+</script>
+</html>

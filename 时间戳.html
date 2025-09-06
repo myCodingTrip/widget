@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>时间戳转换</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    input {
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>时间戳转换</h1>
+  <input type="text" id="input">
+  <button onclick="convert()">Convert</button>
+  <p>Result: <span id="result"></span></p>
+  <script>
+    document.getElementById('input').value=(new Date()).getTime();
+    function convert() {
+      // Get the input value
+      var input = document.getElementById('input').value;
+      
+      // Convert the input to the other format
+      //var result = new Date(input*1).toLocaleString();
+	  
+	  
+	const date = new Date(input*1);
+
+	const year = date.getFullYear();
+	const month = ('0' + (date.getMonth() + 1)).slice(-2); // 月份从0开始，所以要加1
+	const day = ('0' + date.getDate()).slice(-2);
+	const hours = ('0' + date.getHours()).slice(-2);
+	const minutes = ('0' + date.getMinutes()).slice(-2);
+	const seconds = ('0' + date.getSeconds()).slice(-2);
+
+	// 拼接成 YYYY-MM-DD HH:MM:SS 格式
+	const result = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+	//console.log(formattedDate); // 输出：2023-09-11 12:00:00
+
+      
+      // Display the result
+      document.getElementById('result').innerHTML = result;
+    }
+  </script>
+</body>
+</html>
